@@ -1,0 +1,337 @@
+//*======= header css start =====*//
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    .header-bg {
+        .header-item {
+            .header-logo {
+                @include breakpoint (lg) {
+                    width: 15%;
+                }
+            }
+            .mobile-bar {
+                display: block;  
+                height: 40px;
+                width: 40px;
+                line-height: 40px;
+                position: relative;
+                margin: 0 15px;
+                @include breakpoint (lg) {
+                    display: none;
+                }
+                &.close { 
+                    opacity: 1;
+                    span {
+                        &:nth-child(1) {
+                            transform: translate(-100%, -50%) rotate(45deg);
+                            margin-right: 0px;
+                        }
+                        &:nth-child(2) {
+                            margin: 3px 0px;
+                            transform: translate(-70%, -50%) rotate(-45deg);
+                        }
+                        &:nth-child(3) {
+                            transform: translate(-70%, -50%) rotate(45deg);
+                            top: 26px;
+                        }
+                    }
+                }
+                span{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 30px;
+                    height: 2px;
+                    z-index: 1;
+                    background: $white-color;
+                    transform: translate(-50%, -50%);
+                    transition: all .3s ease;
+                    &:nth-child(1) {
+                        width: 14px;
+                        margin-top: 8px;
+                        margin-left: 8px;
+                    }
+                    &:nth-child(3) {
+                        width: 14px;
+                        margin-top: -9px;
+                        margin-left: -8px;
+                    }
+                }
+            }
+            .overlay {
+                width: 100vw;
+                height: 100vh;
+                position: absolute;
+                top: 0;
+                left: -100vw;
+                display: none;
+                animation: fadeEffect 1s; /* Fading effect takes 1 second */
+                background: rgba(49, 27, 146, 0.2);
+                transition: all 0.3s ease-in-out;
+                z-index: 9;
+                &.active {
+                    left: 0;
+                    display: block;
+                    @include breakpoint (lg) {
+                        display: none;
+                    }
+                }
+            }
+            .header-btn {
+                ul.btn-list {
+                    margin: 0;
+                    display: flex;
+                    align-items: center;
+                    li {
+                        list-style: none;
+                        margin-right: 16px;
+                        .form-switch{
+                            margin-bottom: 0;
+                            input.form-check-input {
+                                cursor: pointer;
+                                width: 2.5em;
+                                background-image: url(../../assets/images/fift/moon-circle.svg);
+                                &:checked  {
+                                    background-image: url(../../assets/images/fift/moon.svg);
+                                }
+                                &:focus {
+                                    outline: none;
+                                }
+                            }
+                        } 
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                        &:nth-child(2) {
+                            a {
+                                text-transform: uppercase;
+                            }
+                        }
+                        &.dropdown {
+                           a.dropdown-toggle {
+                            height: 40px;
+                            width: 40px;
+                            line-height: 10px;
+                            padding: 10px;
+                            border-radius: 100%;
+                            text-align: center;
+                            border: 1px solid $white-color;
+                            &::after {
+                                position: absolute;
+                                bottom: 0;
+                                top: 25px;
+                                left: 12px;
+                                border-top: .3em solid $white-color !important;
+                            }
+                           }
+                            .dropdown-menu {
+                                min-width: 150px;
+                                background: rgba(3, 3, 3, 0.5);
+                                a {
+                                    font-size: 12px;
+                                    padding: 5px 10px;
+                                    color: $white-color;
+                                    border: none;
+                                    img {
+                                        margin-right: 8px;
+                                    }
+                                    &:hover {
+                                        background: rgba(136, 136, 136, 0.5);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    a {
+                        span, i {
+                            font-size: 12px;
+                            color: $white-color;
+                        }
+                    }
+                }
+            }
+        }
+        &.menu-fixed  {
+            position: fixed !important;
+            top: 0px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: #003399;
+            box-shadow: 0px 0 10px rgba(136, 136, 136, 0.10);
+        }
+        &.slideInUp{
+            position: relative;
+            z-index: 999;
+        }
+    }
+}
+//?==== common header css ===?//
+.header-item {
+    @extend %flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px  20px;
+    @include breakpoint (lg) {
+        padding: 0 20px;
+    }
+    .header-menu {
+        @include breakpoint (max-lg) {
+            position: absolute;
+            top: 0;
+            width: 300px;
+            height: calc(100vh - 0px);
+            left: -300px;
+            z-index: 999;
+            overflow-y: scroll;
+            background-color: $theme-color;
+            transition: all 0.3s ease-in-out;
+        }
+        &.open {
+            left: 0;
+            ul.menu-list {
+                @include breakpoint (max-lg) {
+                    padding: 30px 0 20px 40px;
+                }
+            }
+        }
+        ul.menu-list {
+            margin: 0;
+            display: block;
+            position: relative;
+            @include breakpoint (lg) {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+            li {
+                padding: 16px 0;
+                @include breakpoint (lg) {
+                    padding: 28px 0;
+                }
+                &:first-child {
+                    a {
+                        @include breakpoint (lg) {
+                            padding-left: 0;
+                        }
+                    }
+                }
+                &:last-child {
+                    a {
+                        padding-right: 0;
+                        border-right: 0;
+                    }
+                }
+            }
+            a {
+                font-size: 12px;
+                padding: 0 20px;
+                color: $white-color;
+                display: inline-block;
+                text-decoration: none;
+                transition: all 0.3s ease-in-out;
+                @include breakpoint (lg) {
+                    border-right: 1px solid $white-color;
+                }
+            }
+        }
+    }
+}
+//*======= header css ends  =====*//
+
+//?==== Content menu css start ====?//
+.content-menu {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%);
+    &::before {
+        @extend %absolute;
+        top: 0;
+        left: -10px;
+        bottom: 0;
+        width: 2px;
+        background: #9c8c8c94;
+    }
+    ul.c-menu-list {
+        margin: 0;
+        display: block;
+        border-bottom: 0;
+        list-style: none;
+        li {
+            position: relative;
+            padding: 32px 0;
+            @include breakpoint (xl) {
+                padding: 40px 0;
+            }
+            &:first-child {
+                &::after {
+                    @extend %absolute;
+                    left: -14px;
+                    top: 0;
+                    height: 10px;
+                    width: 10px;
+                    border-radius: 100%;
+                    border: 1px solid #9c8c8c94;
+                    z-index: 1;
+                    background: #deb887;
+                }
+            }
+            &::before {
+                @extend %absolute;
+                left: -14px;
+                bottom: 0;
+                height: 10px;
+                width: 10px;
+                border-radius: 100%;
+                border: 2px solid #9c8c8c94;
+                z-index: 1;
+                background: #deb887;
+            }
+        }
+        a.nav-link {
+            color: #f1f1f1;
+            font-size: 14px;
+            height: 40px;
+            width: 40px;
+            line-height: 40px;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            text-align: center;
+            border-radius: 100%;
+            &::after {
+                @extend %absolute;
+                top: -10px;
+                left: -10px;
+                right: -10px;
+                bottom: -10px;
+                border-radius: 100%;
+                transform: scale(0);
+                z-index: -1;
+                border: 1px solid $white-color;
+                background: $theme-color;
+                transform-origin: top right bottom left;
+                transition: all 0.3s ease-in-out;
+            }
+            &:hover {
+                border: none;
+                &::after {
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    transform: scale(1.1);
+                }
+            }
+            &.active {
+                background: transparent;
+            }
+        }
+    }
+}
+//?==== Content menu css ends ====?//

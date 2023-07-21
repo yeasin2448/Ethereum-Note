@@ -1,0 +1,693 @@
+/*!
+<----------------------------------------
+  Theme Name: ICO
+  Theme URI: http://infoinlet.net
+  Author: infoinlet.net.
+  Author URI: http://infoinlet.net
+  Description: ICO  is a Creative HTML5 Template for Saas, Startup & any ytpe of confarence.
+  Version: 1.0.0
+  Tags: app, ICO landing page, app landing page, app showcase template, application services, gradient color, landing, marketing, responsive template, seo, software, Software Services, startup, tech, web application landing page.
+---------------------------------------->
+*/
+/*
+>>> TABLE OF CONTENTS:
+<----------------------------------------------------------------
+  01. Default CSS
+  02. Global css
+  03. Header
+  04. sidebar menu
+  05. About
+  07. Roadmap
+  08. News
+  09. Team
+  10. Contact
+---------------------------------------------------------------->
+
+
+/*--------------------------------------------------------------
+Typography
+--------------------------------------------------------------*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+}
+body {
+    position: relative;
+    overflow: hidden;
+    &.dark section {
+        background: #10163A;
+    }
+}
+body,
+button,
+input,
+select,
+textarea {
+	color: $desc-color;
+	font-family: $roboto;
+	font-size: 1rem;
+	font-weight: 400;
+	outline: none;
+    border: none;
+}
+h1 {
+	font-size: $fs-h2;
+}
+h2 {
+	font-size: 30px;
+}
+h3 {
+	font-size: 24px;
+}
+h4 {
+	font-size: $fs-h4;
+}
+h5 {
+ 	font-size: $fs-h5;
+}
+h6 {
+	font-size: $fs-h6;
+}
+h1, h2, h3, h4, h5, h6 {
+	color: $title-color;
+	font-weight: 700;
+	font-family: $roboto;
+    line-height: 1.5;
+    text-transform: capitalize;
+}
+h1>a, h2>a, h3>a, h4>a, h5>a, h6>a {
+	color: inherit;
+	font-size: inherit;
+	font-weight: 700;
+	font-family: $roboto;
+}
+
+@media screen and (min-width: 576px) {
+	h1 {
+	    font-size: $fs-h1;
+	}
+	h2 {
+	    font-size: $fs-h2;
+	}
+	h3 {
+	    font-size: $fs-h3;
+	}
+	h4 {
+	    font-size: $fs-h4;
+	}
+	h5 {
+	    font-size: $fs-h5;
+	}
+	h6 {
+	    font-size: $fs-h6;
+	}
+}
+
+p {
+	font-size: $fs-small-x;
+	margin: 0 0 15px;
+	color: $title-color;
+	line-height: 1.5;
+	font-family: $roboto;
+}
+
+a {
+	color: $desc-color;
+	text-decoration: none;
+	display: inline-block;
+	outline: none;
+    @include transition($transition);
+    &:hover {
+        text-decoration: none;
+    }
+}
+a:focus {
+	outline: none;
+}
+a:hover,
+a:active {
+	color: #000;
+	outline: 0;
+}
+img,
+video {
+	height: auto;
+	max-width: 100%;
+	@include transition($transition);
+}
+section {
+    height: 100vh;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../../assets/images/fift/Enote.svg);
+    &.overflow-auto {
+        height: 100vh;
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+}
+
+//#=== box layout width ===#//
+.box-layout {
+    width: calc(100% - 60px);
+    float: right;
+    @include breakpoint (sm) {
+        width: calc(100% - 80px);
+    }
+}
+//#=== box layout width ===#//
+
+/*=== Placeholder text color -- selectors need to be separate to work. ===*/
+.ctn-preloader {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+}
+
+.ctn-preloader .animation-preloader {
+  position: absolute;
+  z-index: 100;
+}
+
+// Spinner cargando /
+.ctn-preloader .animation-preloader .spinner {
+  -webkit-animation: spinner 1s infinite linear;
+  animation: spinner 1s infinite linear;
+  border-radius: 50%;
+  border: 1px solid rgba(21, 34, 3, .2);
+  border-top-color: #ffffff;
+  // No se identa por orden alfabetico para que no lo sobre-escriba /
+  height: 9em;
+  margin: 0 auto 3.5em auto;
+  width: 9em;
+}
+
+// Texto cargando /
+.ctn-preloader .animation-preloader .txt-loading {
+  font: bold 5em "Roboto", sans-serif;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.ctn-preloader .animation-preloader .txt-loading .letters-loading:before {
+  -webkit-animation: letters-loading 4s infinite;
+  animation: letters-loading 4s infinite;
+  color: #003399;
+  content: attr(data-text-preloader);
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  -webkit-transform: rotateY(-90deg);
+  transform: rotateY(-90deg);
+}
+
+.ctn-preloader .animation-preloader .txt-loading .letters-loading {
+  color: #ffffff;
+  position: relative;
+  @include breakpoint (max-xs) {
+      font-size: 60px;
+  }
+}
+
+.ctn-preloader
+.animation-preloader
+.txt-loading
+.letters-loading:nth-child(2):before {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+.ctn-preloader
+.animation-preloader
+.txt-loading
+.letters-loading:nth-child(3):before {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.ctn-preloader
+.animation-preloader
+.txt-loading
+.letters-loading:nth-child(4):before {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.ctn-preloader
+.animation-preloader
+.txt-loading
+.letters-loading:nth-child(5):before {
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.ctn-preloader
+.animation-preloader
+.txt-loading
+.letters-loading:nth-child(6):before {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.ctn-preloader
+.animation-preloader
+.txt-loading
+.letters-loading:nth-child(7):before {
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+
+.ctn-preloader
+.animation-preloader
+.txt-loading
+.letters-loading:nth-child(8):before {
+  -webkit-animation-delay: 1.4s;
+  animation-delay: 1.4s;
+}
+
+.ctn-preloader .loader-section {
+  background-color:#003399;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  width: calc(50% + 1px);
+}
+
+.ctn-preloader .loader-section.section-left {
+  left: 0;
+}
+
+.ctn-preloader .loader-section.section-right {
+  right: 0;
+}
+
+// Efecto de fade en la animación de cargando /
+.loaded .animation-preloader {
+  opacity: 0;
+  -webkit-transition: 0.3s ease-out;
+  -o-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
+// Efecto de cortina /
+.loaded .loader-section.section-left {
+  -webkit-transform: translateX(-101%);
+  -ms-transform: translateX(-101%);
+  transform: translateX(-101%);
+  -webkit-transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1);
+  -o-transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1);
+  transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1);
+}
+
+.loaded .loader-section.section-right {
+  -webkit-transform: translateX(101%);
+  -ms-transform: translateX(101%);
+  transform: translateX(101%);
+  -webkit-transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1);
+  -o-transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1);
+  transition: 0.7s 0.3s all cubic-bezier(0.1, 0.1, 0.1, 1);
+}
+
+
+// Tamaño de portatil hacia atras (portatil, tablet, celular) /
+@media screen and (max-width: auto) {
+  // Preloader /
+  // Spinner cargando /
+  .ctn-preloader .animation-preloader .spinner {
+    height: 8em;
+    width: 8em;
+  }
+  // Texto cargando /
+  .ctn-preloader .animation-preloader .txt-loading {
+    font: bold 3.5em "Roboto", sans-serif;
+  }
+}
+
+@media screen and (max-width: auto) {
+  // Prelaoder /
+  // Spinner cargando /
+  .ctn-preloader .animation-preloader .spinner {
+    height: 9em;
+    width: 9em;
+  }
+  // Texto cargando /
+  .ctn-preloader .animation-preloader .txt-loading {
+    font: bold 2em "Roboto", sans-serif;
+  }
+}
+
+/*---------------------------------------------------- */
+
+
+/*======= all custom btn css =======*/
+button.btn {
+    display: inline-table;
+    @extend %shadow;
+}
+.btn{
+    font-size: 14px;
+    padding: 8px 25px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    @extend %shadow;
+    background: $theme-color;
+    transition: all 0.3s ease-in-out;
+    &:focus {
+        box-shadow: none;
+    }
+    &:hover {
+        background: linear-gradient(90deg, #ef7f7f, #ff406f);
+        span, i {
+            color: $white-color;
+        }
+    }
+    span {
+        font-size: 12px;
+        color: $white-color;
+        text-transform: uppercase;
+    }
+    .btn-ripple{
+        background: rgba(255, 255, 255, 0.3);
+        position: absolute;
+        border-radius: 100%;
+        animation: ripple 1s;
+        transform: scale(0);
+    }
+}
+/*======= all custom btn css =======*/
+
+//?======= all keyframes css start =====?//
+@keyframes ripple {
+    100%{
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+//?======= all keyframes css ends  =====?//
+
+
+//#==== form css start ====#//
+form {
+    .input-group {
+        position: relative;
+        input {
+            &.form-control {
+                width: 100%;
+                height: 40px;
+                font-size: 14px;
+                padding-left: 35px;
+                border: 1px solid $theme-color;
+                border-radius: 3px;
+                background: transparent;
+                transition: all 0.3s ease-in-out;
+                &::placeholder {
+                    font-size: 12px;
+                    color: $theme-color;
+                    transition: all 0.3s ease-in-out;
+                }
+                &:focus {
+                    border: 1px solid #000;
+                    box-shadow: none;
+                    &::placeholder {
+                        color: #000;
+                        padding-left: 5px;
+                    }
+                    ~ i {
+                        color: #000;
+                        svg {
+                            g {
+                            path {
+                                fill: #000;
+                            }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        i {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            color: $theme-color;
+            z-index: 9;
+            transform: translateY(-50%);
+            &.view_pass {
+                left: auto;
+                right: 10px;
+                cursor: pointer;
+            }
+        }
+        label {
+            position: absolute;
+            font-size: 12px;
+            top: 30%;
+            left: 30px;
+            opacity: 0;
+            padding: 0 5px;
+            background: #fff;
+            z-index: 111;
+            transition: all 0.3s ease-in-out;
+            &.control-label {
+                opacity: 1;
+                top: -20px;
+                left: 0;
+                &.h6 {
+                    @include breakpoint (sm) {
+                        top: -25px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+        textarea {
+            padding: 10px;
+            width: 100%;
+            font-size: 12px;
+            height: 100px !important;
+            border: 1px solid $theme-color;
+            border-radius: 3px;
+            background: transparent;
+            transition: all 0.3s ease-in-out;
+            &::placeholder {
+                color: $theme-color;
+                font-size: 14px;
+                transition: all 0.3s ease-in-out;
+            }
+            &:focus {
+                border-color: #000;
+                &::placeholder {
+                    color: #000;
+                    padding-left: 5px;
+                }
+            }
+        }
+        .controls {
+            select {
+                height: 40px;
+                border: 1px solid $theme-color;
+            }
+        }
+
+    }
+    button {
+        &.custom-btn {
+            margin-top: 20px;
+        }
+    }
+}
+.input-group  > input:not(:placeholder-shown) ~ label {
+    top: -12px;
+    left: 10px;
+    opacity: 1;
+    padding: 5px;
+}
+//#==== form css end ====#//
+
+/*======= all scrollbar css =====*/
+.overflow-auto::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+.overflow-auto::-webkit-scrollbar {
+    width: 5px;
+}
+.overflow-auto::-webkit-scrollbar-thumb {
+    background-color: #253992;
+    border-radius: 5px;
+}
+/*======= all scrollbar css =====*/
+
+@keyframes preloader-fx {
+    0% {
+        -webkit-transform: scale(0, 0);
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+
+    100% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes preloader-fx {
+    0% {
+        -webkit-transform: scale(0, 0);
+        opacity: 0.5;
+    }
+
+    100% {
+        -webkit-transform: scale(1, 1);
+        opacity: 0;
+    }
+}
+
+
+%flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+%absolute {
+    position: absolute;
+    content: '';
+}
+
+
+%shadow {
+    -webkit-box-shadow: 3px 0 35px rgba(0, 0, 0, .35);
+    box-shadow: 3px 0 35px rgba(0, 0, 0, .35);
+}
+
+%border {
+    border: 10px solid #ed4a4382;
+}
+
+%widget-mt {
+    margin-top: 35px;
+}
+
+%widget-pad {
+    padding: 20px 20px 30px;
+}
+
+
+//? common social media
+.btn-facebook {
+    background: $facebook;
+    &:hover {
+        background: $white-color;
+        border: 1px solid $facebook !important;
+        i {
+            color: $facebook;
+        }
+    }
+    i {
+        color: $white-color;
+    }
+}
+
+.btn-twitter {
+    background: $twitter;
+    border: 1px solid !important;
+    i {
+        color: $white-color
+    }
+    &:hover {
+        background: $white-color;
+        i {
+            color: $twitter;
+        }
+    }
+}
+
+.btn-twitter-sm {
+    background: $twitter;
+    &:hover {
+        background: $white-color;
+        border: 1px solid $twitter;
+        i {
+            color: $twitter;
+        }
+    }
+    i {
+        color: $white-color;
+    }
+}
+
+.btn-google {
+    background: $google;
+    &:hover {
+        background: $white-color;
+        border: 1px solid $google !important;
+        i {
+            color: $google;
+        }
+    }
+    i {
+        color: $white-color;
+    }
+}
+
+.btn-github {
+    background: slategray;
+    &:hover {
+        background: $white-color;
+        border: 1px solid $google !important;
+        i {
+            color: $google;
+        }
+    }
+    i {
+        color: $white-color;
+    }
+
+}
+
+.btn-linkedin {
+    background: $linkedin;
+    &:hover {
+        background: $white-color;
+        border: 1px solid $linkedin !important;
+        i {
+            color: $linkedin;
+        }
+    }
+    i {
+        color: $white-color;
+    }
+}
+
+//? all media padding
+
